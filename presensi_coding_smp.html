@@ -226,12 +226,12 @@
         //  PENTING: GANTI NILAI DI BAWAH INI DENGAN KONFIGURASI PROYEK FIREBASE ANDA
         // =========================================================================
         const firebaseConfig = {
-  apiKey: "AIzaSyB8f...", // Ini adalah kuncinya
-  authDomain: "presensicoding...firebaseapp.com",
-  projectId: "presensicoding...",
-  storageBucket: "presensicoding...appspot.com",
-  messagingSenderId: "211...",
-  appId: "1:211..."
+        apiKey: "AIzaSyB8f...", // Ini adalah kuncinya
+        authDomain: "presensicoding...firebaseapp.com",
+        projectId: "presensicoding...",
+        storageBucket: "presensicoding...appspot.com",
+        messagingSenderId: "211...",
+        appId: "1:211..."
 };
         // =========================================================================
 
@@ -264,9 +264,12 @@
                 auth = getAuth(app);
                 db = getFirestore(app);
                 
-                // Path koleksi data (menggunakan nama koleksi sederhana di proyek Anda)
-                const COLLECTION_PATH = "absensi_coding_ekstra";
-                absensiColl = collection(db, COLLECTION_PATH);
+        // Mengambil appId dari konfigurasi Firebase
+                const appId = app.options.appId.split(':')[2]; 
+
+        // PERBAIKAN: Menggunakan path publik penuh
+            const COLLECTION_PATH = `/artifacts/${appId}/public/data/absensi_coding_ekstra`;
+            absensiColl = collection(db, COLLECTION_PATH);
 
                 // Autentikasi Anonim (Anonimous Sign-In)
                 await signInAnonymously(auth);
